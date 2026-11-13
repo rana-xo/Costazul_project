@@ -1,0 +1,60 @@
+# =========================================================================
+# Unity Archivos Temporales y Builds
+# =========================================================================
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# =========================================================================
+# Archivos de Proyectos / IDEs (Visual Studio, Rider, VS Code)
+# =========================================================================
+# Visual Studio / MonoDevelop
+.vs/
+.idea/
+/*.csproj
+/*.unityproj
+/*.sln
+/*.suo
+/*.user
+/*.userprefs
+/*.pidb
+/*.booproj
+/*.svd
+/*.pdb
+/*.opendb
+/*.VC.db
+
+# VS Code
+.vscode/
+
+# Crash Reports
+sysinfo.txt
+
+# =========================================================================
+# Asset Store / Packages descargados localmente
+# =========================================================================
+/[Aa]ssets/AssetStoreTools*
+
+# =========================================================================
+# Sistema Operativo
+# =========================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+Desktop.ini
+$RECYCLE.BIN/
