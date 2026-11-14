@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyMelee : EnemyTemplate
+public class EnemyMelee : EnemyController
 {
    // se la re banca solo
 }

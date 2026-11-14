@@ -9,7 +9,7 @@ public enum EnemyState
     Attack,
     Death
 }
-public class EnemyController : MonoBehaviour, IDamagable //IHealth
+public class EnemyController : MonoBehaviour, IDamagable
 {
 
     [Header("Stats")]
@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour, IDamagable //IHealth
     [SerializeField] protected float _attackRange = 2f;
     [SerializeField] private float _attackCooldown = 1.2f;
 
-    [Header("Death")]
+    [Header("Death")] //integrar animaciones
 
     [SerializeField] private float sinkSpeed = 1f;
     [SerializeField] private float sinkDuration = 1.5f;

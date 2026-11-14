@@ -2,6 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+interface IObjectInteract
+{
+    public bool CanInteract();
+
+    public bool Interact(Interactor interactor);
+}
+
 public class PlayerControler : MonoBehaviour, IDamagable
 {
     [Header("Movement")]
@@ -12,21 +19,16 @@ public class PlayerControler : MonoBehaviour, IDamagable
     [SerializeField] private float _maxHealth = 50f;
     [SerializeField] private float _damageRecieved = 10f;
 
-    [Header("Other")]
-    //quedó para que no se me buguee más abajo
-    public Transform _player;
-    public GameObject WinScene;
-
     private Vector2 _input;
     private Vector3 _moveDirection;
     private float _verticalVelocity;
     private float _moveVelocity;
-    private CharacterController _characterController;
+    private CharacterController _playerControler;
 
 
     void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
+        _playerControler = GetComponent<CharacterController>();
     }
 
     // ------- Movimiento teclado
@@ -34,9 +36,9 @@ public class PlayerControler : MonoBehaviour, IDamagable
     {
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
-        _moveDirection = new Vector3(_input.x, 0f, _input.y); //mov adelnte atras izq der
+        _moveDirection = new Vector3(_input.x, 0f, _input.y);
 
-        _characterController.Move(_moveDirection * _speed * Time.deltaTime); //delta = ecualizador fps
+        _playerControler.Move(_moveDirection * _speed * Time.deltaTime); //delta = ecualizador fps
     }
 
    /* private void OnTriggerEnter(Collider other)
@@ -60,16 +62,6 @@ public class PlayerControler : MonoBehaviour, IDamagable
             SceneManager.LoadSceneAsync(3);
         }
 
-    }
-
-    //------- Meta
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Finish")
-        {
-            WinScene.gameObject.SetActive(true);
-        }
     }
 }
 

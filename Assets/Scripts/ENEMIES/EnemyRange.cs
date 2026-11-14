@@ -1,7 +1,7 @@
 using System.Threading;
 using UnityEngine;
 
-public class EnemyRange : EnemyTemplate
+public class EnemyRange : EnemyController
 {
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private GameObject _bulletPrefab;
