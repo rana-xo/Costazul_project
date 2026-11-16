@@ -18,6 +18,9 @@ public class PlayerControler : MonoBehaviour, IDamagable
     [Header("Health")]
     [SerializeField] private float _maxHealth = 50f;
     [SerializeField] private float _damageRecieved = 10f;
+    [Header("Shoot")]
+    [SerializeField] private Transform _shootPoint;
+    [SerializeField] private GameObject _bulletPrefab;
 
     private Vector2 _input;
     private Vector3 _moveDirection;
@@ -39,17 +42,12 @@ public class PlayerControler : MonoBehaviour, IDamagable
         _moveDirection = new Vector3(_input.x, 0f, _input.y);
 
         _playerControler.Move(_moveDirection * _speed * Time.deltaTime); //delta = ecualizador fps
-    }
 
-   /* private void OnTriggerEnter(Collider other)
-    {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        if (other.gameObject.tag == "Player") ;
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            TakeDamage(_damageRecieved);
+            Shoot();
         }
-    }*/
+    }
 
     public void TakeDamage(float damage)
     {
@@ -62,6 +60,12 @@ public class PlayerControler : MonoBehaviour, IDamagable
             SceneManager.LoadSceneAsync(3);
         }
 
+    }
+
+    void Shoot()
+    {
+        GameObject bullet = Instantiate(_bulletPrefab.gameObject, _shootPoint.position, Quaternion.identity);
+        bullet.GetComponent<BulletController>().Launch(_shootPoint.forward);
     }
 }
 

@@ -23,15 +23,18 @@ public class Meta : MonoBehaviour
         {
             interactor.Interact();
         }
-    }
+    }*/
 
     //------------------------------------------------------------------
 
     public bool CanInteract()
     { return true; }
 
-    public bool Interact(Interactor interactor)
+   /* public bool Interact(Interactor interactor)
     {
-        SceneManager.LoadSceneAsync(4);
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SceneManager.LoadSceneAsync(4);
+        }
     }*/
 }

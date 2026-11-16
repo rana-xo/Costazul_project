@@ -2,13 +2,13 @@ using UnityEditor;
 using UnityEngine;
 using System;
 using UnityEngine.AI;
-public enum EnemyState
+/*public enum EnemyState
 {
     Idle,
     Chase,
     Attack,
     Death
-}
+}*/
 public class EnemyController : MonoBehaviour, IDamagable
 {
 
@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour, IDamagable
     [SerializeField] private float _detectionRange = 10f;
     [SerializeField] protected float _attackRange = 2f;
     [SerializeField] private float _attackCooldown = 1.2f;
+    [SerializeField] private float _damage = 10f;
 
     [Header("Death")] //integrar animaciones
 
@@ -27,9 +28,9 @@ public class EnemyController : MonoBehaviour, IDamagable
     public Transform _player;
     public float AttackDistance;
 
-    private NavMeshAgent _navmesh;
-    private Animator _anim;
-    private float _distance;
+    public NavMeshAgent _navmesh;
+    public Animator _anim;
+    public float _distance;
     private Rigidbody _rb;
 
     // ------ navmesh, anim, player
@@ -53,9 +54,11 @@ public class EnemyController : MonoBehaviour, IDamagable
     }
 
     // -------- Chase state
+
     void Update()
     {
         _distance = Vector3.Distance(_navmesh.transform.position, _player.position);
+
 
         if (_distance < AttackDistance)
         {
@@ -66,15 +69,26 @@ public class EnemyController : MonoBehaviour, IDamagable
         {
             _navmesh.isStopped = false;
             _anim.SetBool("Attack", false);
-            _navmesh.destination = _player.position;
+            _navmesh.destination = _player.position; 
+        }
+
+
+        if (_navmesh.velocity.magnitude != 0f)
+        {
+            _anim.SetBool("Chase", true);
+        }
+        else
+        {
+            _anim.SetBool("Chase", false);
         }
     }
 
     void OnNavMeshMove()
     {
-        if (_anim.GetBool("Attack") == false)
+        if (_anim.GetBool("Chase") == true)
         {
             _navmesh.speed = (_anim.deltaPosition / Time.deltaTime).magnitude;
+            
         }
     }
 
@@ -88,5 +102,13 @@ public class EnemyController : MonoBehaviour, IDamagable
             Destroy(gameObject);
         }
     }
+
+   /* private void OnCollisionEnter(Collision collision) //kaput enemigo x2
+    {
+        if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damage))
+        {
+            Destroy(gameObject);
+        }
+    }*/
 
 }

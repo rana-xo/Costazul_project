@@ -11,8 +11,9 @@ public class EnemyRange : EnemyController
     {
         timer += Time.deltaTime;
 
-        if(timer > 2)
+        if (timer > 2)
         {
+            _anim.SetBool("Idle", true);
             timer = 0;
             Shoot();
         }
@@ -23,5 +24,6 @@ public class EnemyRange : EnemyController
     {
         GameObject bullet = Instantiate(_bulletPrefab.gameObject, _shootPoint.position, Quaternion.identity);
         bullet.GetComponent<BulletController>().Launch(_shootPoint.forward);
+        _anim.SetBool("Attack", true);
     }
 }

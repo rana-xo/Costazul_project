@@ -185,6 +185,8 @@ MonoBehaviour:
   _gravity: -9.81
   _maxHealth: 9
   _damageRecieved: 10
+  _shootPoint: {fileID: 0}
+  _bulletPrefab: {fileID: 0}
 --- !u!95 &4541619833577533098
 Animator:
   serializedVersion: 7

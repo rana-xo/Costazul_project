@@ -1,11 +1,18 @@
-using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI; //navmeshagent es de esta directriz //protected = mantiene valores
 
 // DESCONTINUADO 
 
-
+public enum EnemyState
+{
+    Idle,
+    Chase,
+    Attack,
+    Death
+}
 public abstract class EnemyTemplate : MonoBehaviour, IDamagable
 {
 
@@ -23,6 +30,15 @@ public abstract class EnemyTemplate : MonoBehaviour, IDamagable
     [SerializeField] protected float _attackRange = 2f;
     [SerializeField] private float _attackCooldown = 1.2f;
     [SerializeField] private float _damage = 10f;
+
+    [Header("Attack")]
+    private float _distance;
+    public float AttackDistance;
+
+    [Header("NavMesh")]
+    private NavMeshAgent _navmesh;
+    [Header("Animator")]
+    private Animator _anim;
 
     [Header ("Death")]
 
@@ -81,6 +97,8 @@ public abstract class EnemyTemplate : MonoBehaviour, IDamagable
                 UpdateDeathState();
                 break;*/
         }
+
+       
     }
 
     //     -----  variables enemy
@@ -96,11 +114,15 @@ public abstract class EnemyTemplate : MonoBehaviour, IDamagable
         {
             _currentState = EnemyState.Attack;
             _agent.isStopped = true;
+            _navmesh.isStopped = true;
+            _anim.SetBool("Attack", true);
         }
 
         if (_animator.GetBool("Attack") == false)
         {
             _agent.speed = (_animator.deltaPosition / Time.deltaTime).magnitude;
+            _navmesh.destination = _player.position;
+            _anim.SetBool("Attack", false);
         }
     }
     //------ Generar el daño
