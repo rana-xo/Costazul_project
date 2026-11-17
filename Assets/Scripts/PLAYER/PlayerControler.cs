@@ -28,10 +28,13 @@ public class PlayerControler : MonoBehaviour, IDamagable
     private float _moveVelocity;
     private CharacterController _playerControler;
 
+    private Animator animator;
+
 
     void Awake()
     {
         _playerControler = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     // ------- Movimiento teclado
@@ -43,9 +46,9 @@ public class PlayerControler : MonoBehaviour, IDamagable
 
         _playerControler.Move(_moveDirection * _speed * Time.deltaTime); //delta = ecualizador fps
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            Shoot();
+            animator.Play("Mushroom_Attack02Smile");
         }
     }
 
