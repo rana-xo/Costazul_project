@@ -1089,7 +1089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6189998857679520140, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6189998857679520140, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
       propertyPath: m_AutoTraverseOffMeshLink
