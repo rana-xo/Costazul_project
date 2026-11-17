@@ -9,8 +9,10 @@ public class EnemyMelee : EnemyController, IDamagable
     // ------ Realizar ataque
     protected override void Update()
     {
+
         base.Update();
 
+        print(_distance + " / " + AttackReach);
         if (_distance < AttackReach && Time.time >= _attackCooldown)
         {
             AttackCollider();
@@ -34,6 +36,8 @@ public class EnemyMelee : EnemyController, IDamagable
             {
                 damage.TakeDamage(_damage);
                 AudioManager.Instance.AttackSFX();
+
+                _anim.Play("Cactus_Attack01"); 
                 break;                      
             }
         }
@@ -44,7 +48,7 @@ public class EnemyMelee : EnemyController, IDamagable
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector3 center = attackController != null ? attackController.position : transform.position;
+      
         Gizmos.DrawWireSphere(attackController.position, _attackRange);
     }
 

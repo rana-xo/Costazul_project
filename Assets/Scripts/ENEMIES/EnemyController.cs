@@ -77,14 +77,12 @@ public class EnemyController : MonoBehaviour, IDamagable
         }
     }
 
-    // ------- Conseguir atacar
+    // ------- rango en el que toma el daño
     protected virtual float AttackReach
     {
         get
         {
-            float configured = AttackDistance > 0f ? AttackDistance : _attackRange;
-            float minReach = _navmesh != null ? _navmesh.radius * 2f + 0.25f : 0f;
-            return Mathf.Max(configured, minReach);
+            return 1.5f;
         }
     }
 

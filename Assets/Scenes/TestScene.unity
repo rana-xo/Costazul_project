@@ -1059,9 +1059,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 876383236451882487, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2300757355870639296, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
       propertyPath: m_Name
       value: Wachi
+      objectReference: {fileID: 0}
+    - target: {fileID: 3995242126850596593, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665180776474476872, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158359743881326141, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158359743881326141, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
+      propertyPath: m_Center.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158359743881326141, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189998857679520140, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189998857679520140, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
+      propertyPath: m_AutoTraverseOffMeshLink
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6873677266712890662, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1290,29 +1322,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &1641164867
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641164860}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1716477762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,12 +1353,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 1802226660}
   SFXSource: {fileID: 249295904}
-  audio_source: {fileID: 0}
   _GameMusic: {fileID: 0}
   _MenuMusic: {fileID: 0}
   _GameOverMusic: {fileID: 0}
   _AttackSFX: {fileID: 0}
   _ShootSFX: {fileID: 0}
+  _NPCShootSFX: {fileID: 0}
+  _NPCDamageSFX: {fileID: 0}
+  _PlayerDamageSFX: {fileID: 0}
   _SelectSFX: {fileID: 0}
 --- !u!4 &1716477764
 Transform:
@@ -1619,6 +1630,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2155063411715420632, guid: dcc982307a817354fafb192abcd9b917, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155063411715420632, guid: dcc982307a817354fafb192abcd9b917, type: 3}
+      propertyPath: m_Center.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4858958049686215141, guid: dcc982307a817354fafb192abcd9b917, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1678,9 +1697,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7427070853888570003, guid: dcc982307a817354fafb192abcd9b917, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1641164863}
-    - targetCorrespondingSourceObject: {fileID: 7427070853888570003, guid: dcc982307a817354fafb192abcd9b917, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1641164867}
   m_SourcePrefab: {fileID: 100100000, guid: dcc982307a817354fafb192abcd9b917, type: 3}
 --- !u!1001 &3740983295508057324
 PrefabInstance:
