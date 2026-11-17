@@ -30,13 +30,25 @@ public class BulletController : MonoBehaviour
         //normalized = 1 aka que no vaya mas rapido de lo que debe
     }
 
+    // ------- Generar daño
+    private void OnTriggerEnter(Collider other)
+    {
+        IDamagable damage = other.GetComponentInParent<IDamagable>();
+        if (damage != null)
+        {
+            damage.TakeDamage(_damage);
+            AudioManager.Instance.PlayerDMG();
+            Destroy(gameObject);
+        }
+    }
 
-    // ------ Destruirse al chocar y generar daño
-    private void OnCollisionEnter(Collision collision) //kaput enemigo
+    // ------ Generar daño x2, porque no logro resolver cuál es el que funciona con enemies y player
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damage))
         {
             damage.TakeDamage(_damage);
+            AudioManager.Instance.PlayerDMG();
             Destroy(gameObject);
         }
         else
@@ -45,14 +57,4 @@ public class BulletController : MonoBehaviour
         }
         
     }
-      
-        /*
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            GameObject enemy = collision.gameObject;
-            Destroy(enemy);
-        }
-
-        Destroy(gameObject);
-        */
 }

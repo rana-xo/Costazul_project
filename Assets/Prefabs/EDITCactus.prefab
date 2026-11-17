@@ -532,6 +532,7 @@ GameObject:
   - component: {fileID: 7807431114919716905}
   - component: {fileID: 7769598065701365474}
   - component: {fileID: 4858958049686215141}
+  - component: {fileID: 2155063411715420632}
   m_Layer: 0
   m_Name: EDITCactus
   m_TagString: Untagged
@@ -600,9 +601,33 @@ MonoBehaviour:
   sinkDuration: 1.5
   _player: {fileID: 6873677266712890662, guid: e8d5e23e5de10c7418b5d82a378e7f8a, type: 3}
   AttackDistance: 0.5
+  _navmesh: {fileID: 0}
   _anim: {fileID: 0}
+  _distance: 0
   attackController: {fileID: 2688197422478795315}
-  attackRadious: 1
+--- !u!136 &2155063411715420632
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7427070853888570003}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7712155012871449178
 GameObject:
   m_ObjectHideFlags: 0

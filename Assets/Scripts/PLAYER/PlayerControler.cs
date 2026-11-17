@@ -48,7 +48,11 @@ public class PlayerControler : MonoBehaviour, IDamagable
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            animator.Play("Mushroom_Attack02Smile");
+            animator.Play("Mushroom_Attack02Smile 0");
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.AttackSFX();
+
+            Shoot();
         }
     }
 
@@ -59,7 +63,6 @@ public class PlayerControler : MonoBehaviour, IDamagable
 
         if (_maxHealth < 0)
         {
-            Destroy(gameObject);
             SceneManager.LoadSceneAsync(3);
         }
 
@@ -69,6 +72,7 @@ public class PlayerControler : MonoBehaviour, IDamagable
     {
         GameObject bullet = Instantiate(_bulletPrefab.gameObject, _shootPoint.position, Quaternion.identity);
         bullet.GetComponent<BulletController>().Launch(_shootPoint.forward);
+        animator.SetBool("Attack", true);
     }
 }
 

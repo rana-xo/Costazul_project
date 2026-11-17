@@ -2,13 +2,6 @@ using UnityEditor;
 using UnityEngine;
 using System;
 using UnityEngine.AI;
-/*public enum EnemyState
-{
-    Idle,
-    Chase,
-    Attack,
-    Death
-}*/
 public class EnemyController : MonoBehaviour, IDamagable
 {
 
@@ -16,10 +9,10 @@ public class EnemyController : MonoBehaviour, IDamagable
     [SerializeField] private float _maxHealth = 50f;
     [SerializeField] private float _detectionRange = 10f;
     [SerializeField] protected float _attackRange = 2f;
-    [SerializeField] private float _attackCooldown = 1.2f;
-    [SerializeField] private float _damage = 10f;
+    [SerializeField] protected float _attackCooldown = 1.2f;
+    [SerializeField] protected float _damage = 10f;
 
-    [Header("Death")] //integrar animaciones
+    [Header("Death")] //Nota: integrar animaciones :P
 
     [SerializeField] private float sinkSpeed = 1f;
     [SerializeField] private float sinkDuration = 1.5f;
@@ -28,6 +21,7 @@ public class EnemyController : MonoBehaviour, IDamagable
     public Transform _player;
     public float AttackDistance;
 
+    // ------ cosas del inspector :o
     public NavMeshAgent _navmesh;
     public Animator _anim;
     public float _distance;
@@ -55,7 +49,7 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     // -------- Chase state
 
-    void Update()
+    protected virtual void Update()
     {
         _distance = Vector3.Distance(_navmesh.transform.position, _player.position);
 
@@ -83,6 +77,18 @@ public class EnemyController : MonoBehaviour, IDamagable
         }
     }
 
+    // ------- Conseguir atacar
+    protected virtual float AttackReach
+    {
+        get
+        {
+            float configured = AttackDistance > 0f ? AttackDistance : _attackRange;
+            float minReach = _navmesh != null ? _navmesh.radius * 2f + 0.25f : 0f;
+            return Mathf.Max(configured, minReach);
+        }
+    }
+
+    // ------ Moverse usando navmesh
     void OnNavMeshMove()
     {
         if (_anim.GetBool("Chase") == true)
@@ -97,18 +103,10 @@ public class EnemyController : MonoBehaviour, IDamagable
     {
         _maxHealth -= damage;
 
-        if (_maxHealth < 0)
+        if (_maxHealth <+ 0)
         {
             Destroy(gameObject);
+            AudioManager.Instance.NpcDMG();
         }
     }
-
-   /* private void OnCollisionEnter(Collision collision) //kaput enemigo x2
-    {
-        if (collision.gameObject.TryGetComponent<IDamagable>(out IDamagable damage))
-        {
-            Destroy(gameObject);
-        }
-    }*/
-
 }

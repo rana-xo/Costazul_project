@@ -3,35 +3,49 @@ using UnityEngine.AI;
 
 public class EnemyMelee : EnemyController, IDamagable
 {
-    [Header("MeleeParameters")]
+    [Header("Controller")]
     [SerializeField] private Transform attackController;
-    [SerializeField] private float attackRadious;
 
-
-    void Update()
+    // ------ Realizar ataque
+    protected override void Update()
     {
-       
+        base.Update();
+
+        if (_distance < AttackReach && Time.time >= _attackCooldown)
+        {
+            AttackCollider();
+        }
     }
 
+    // ------ Generar collider de ataque
     public void AttackCollider()
     {
-        Collider2D[] objetos = Physics2D.OverlapCircleAll(attackController.position, attackRadious);
+        Vector3 center = attackController != null ? attackController.position : transform.position;
 
-        foreach (Collider2D collider in objetos)
+        Collider[] objetos = Physics.OverlapSphere(center, Mathf.Max(_attackRange, AttackReach));
+
+        foreach (Collider collider in objetos)
         {
-            if (collider.TryGetComponent<IDamagable>(out IDamagable damage))
+            if (collider.GetComponentInParent<EnemyController>() != null)
+                continue;
+
+            if (collider.TryGetComponent<IDamagable>(out IDamagable damage) ||
+                (collider.attachedRigidbody != null && collider.attachedRigidbody.TryGetComponent(out damage)))
             {
-                Destroy(gameObject);
-                _anim.SetBool("Attack", false);
+                damage.TakeDamage(_damage);
+                AudioManager.Instance.AttackSFX();
+                break;                      
             }
         }
         
     }
 
+    // ------ Crear radio de ataque (rojo en el editor)
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackController.position, attackRadious);
+        Vector3 center = attackController != null ? attackController.position : transform.position;
+        Gizmos.DrawWireSphere(attackController.position, _attackRange);
     }
 
    
