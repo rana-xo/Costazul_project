@@ -12,7 +12,6 @@ public class EnemyMelee : EnemyController, IDamagable
 
         base.Update();
 
-        print(_distance + " / " + AttackReach);
         if (_distance < AttackReach && Time.time >= _attackCooldown)
         {
             AttackCollider();

@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 4858958049686215141}
   - component: {fileID: 2155063411715420632}
   m_Layer: 0
-  m_Name: EDITCactus
+  m_Name: MELEE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4981bcc40c2f43444a9c288146e5667e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMelee
-  _maxHealth: 50
+  _maxHealth: 9
   _detectionRange: 10
   _attackRange: 2
   _attackCooldown: 1.2

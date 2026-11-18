@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182575767201897276}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7206618, y: 0.015963892, z: 0.6930317, w: -0.00993575}
-  m_LocalPosition: {x: 0.369, y: 0.436, z: 0.098}
+  m_LocalRotation: {x: -0.0065312376, y: -0.0040239175, z: -0.99980193, w: 0.018367715}
+  m_LocalPosition: {x: 0.369, y: 0.436, z: 0.127}
   m_LocalScale: {x: 0.15292, y: 0.43779, z: 0.16982}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5969857177468904289}
-  m_LocalEulerAnglesHint: {x: 182.089, y: -87.75101, z: -0.5299988}
+  m_LocalEulerAnglesHint: {x: 180.475, y: 180.74, z: 2.102005}
 --- !u!33 &2551238489118969480
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -351,12 +351,12 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5333096
   m_Height: 2.278247
   m_Direction: 1
-  m_Center: {x: -7.527453e-10, y: 0.63912356, z: -0.03330958}
+  m_Center: {x: -0.4, y: 0.6, z: 0.16}
 --- !u!95 &4554480865516190334
 Animator:
   serializedVersion: 7
@@ -427,9 +427,13 @@ MonoBehaviour:
   sinkDuration: 1.5
   _player: {fileID: 0}
   AttackDistance: 0
+  _navmesh: {fileID: 0}
   _anim: {fileID: 0}
+  _distance: 0
   _shootPoint: {fileID: 6610552396528837631}
   _bulletPrefab: {fileID: 4622703163838083445, guid: eb662fada11e38e4da683d090d204262, type: 3}
+  _shootRange: 8
+  _turnSpeed: 8
 --- !u!1 &1544428359514064044
 GameObject:
   m_ObjectHideFlags: 0
